@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+</head>
+<body>
+    <h1>Generate an Image</h1>
+    <form action="/generate" method="post">
+        <label for="prompt">Prompt:</label>
+        <input type="text" id="prompt" name="prompt" required>
+        <button type="submit">Generate</button>
+    </form>
+    <div id="result">
+        {% if image_url %}
+            <h2>Generated Image:</h2>
+            <img src="{{ image_url }}" alt="Generated Image">
+        {% endif %}
+    </div>
+</body>
+</html>
