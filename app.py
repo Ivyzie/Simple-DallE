@@ -26,7 +26,7 @@ def login_required(f):
     return decorated_function
 
 load_dotenv()
-OPEN_API_KEY = os.getenv('OPEN_API_KEY', 'sk-proj-Ziaae57xKQMLxbltcDA8T3BlbkFJyUeyeiuOldCShltqGdcE')
+OPEN_API_KEY = os.getenv('OPEN_API_KEY', 'PUT_YOUR_API_HERE')
 
 # Pass the API key to the OpenAI client
 client = OpenAI(api_key=OPEN_API_KEY)
