@@ -22,3 +22,6 @@
 Open cmd and ssh to serveo.net, pretty cool website 
 > **`ssh -R 80:localhost:<YOUR-PORT> serveo.net`**
 > copy paste the url in the cmd
+
+## Fun fact:
+I did not write a single line of code, everything was from Claude 3.5 Sonnet and GPT4.
