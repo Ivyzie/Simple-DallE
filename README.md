@@ -6,7 +6,7 @@
 
 ## Use your own OpenAI API key please 
 
-   Under app.py, and change the OPEN_API_KEY
+   Under app.py, and change the OPEN_API_KEY, VALID_USERNAME and VALID_PASSWORD
    
 
 ***Running the app***
