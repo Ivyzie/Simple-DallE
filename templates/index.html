@@ -3,20 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Generator</title>
+    <title>APT USE ONLY</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <h1>Generate an Image</h1>
-    <form action="/generate" method="post">
-        <label for="prompt">Prompt:</label>
-        <input type="text" id="prompt" name="prompt" required>
-        <button type="submit">Generate</button>
-    </form>
-    <div id="result">
-        {% if image_url %}
-            <h2>Generated Image:</h2>
-            <img src="{{ image_url }}" alt="Generated Image">
-        {% endif %}
+    <div id="sidebar">
+        <h1>APT USE</h1>
+        <ul class="top" id="chat-history">
+            <!-- Dynamic chat buttons will be inserted here -->
+        </ul>
+        <button id="new-chat-btn" class="new-chat-button">New Chat</button>
+        <ul class="bottom">
+            <li><a href="#" id="logout-btn">Logout</a></li>
+        </ul>
     </div>
+    <div id="main-content">
+        <div id="nav-bar">
+            <button id="toggle-sidebar-btn" class="toggle-sidebar-button">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div id="model-selector">
+                <select id="model" name="model">
+                    <option value="gpt4" selected>GPT-4</option>
+                    <option value="dalle">DALL-E</option>
+                </select>
+            </div>
+        </div>
+        <div id="chat-container">
+            <div id="chat-messages"></div>
+        </div>
+        <form id="prompt-form">
+            <div class="input-container">
+                <label for="file" class="file-upload-icon" title="Upload file">
+                    <i class="fas fa-paperclip"></i>
+                </label>
+                <span class="file-indicator">File selected</span>
+                <textarea id="prompt" name="prompt" rows="1" placeholder="Type your message..."></textarea>
+                <input type="file" id="file" name="file" style="display: none;">
+                <button type="submit">
+                    <span class="button-text">Send</span>
+                    <div class="spinner"></div>
+                </button>
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
