@@ -11,11 +11,11 @@ from PyPDF2 import PdfReader
 import json
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Change this to a secure random string
+app.secret_key = os.getenv('SECRET_KEY', 'your_secret_key_here')  # Use environment variable for secret key
 
 # Hardcoded credentials
-VALID_USERNAME = 'admin@gmail.com'
-VALID_PASSWORD = 'admin@gmail.com'
+VALID_USERNAME = os.getenv('VALID_USERNAME', 'admin@gmail.com')
+VALID_PASSWORD = os.getenv('VALID_PASSWORD', 'admin@gmail.com')
 
 def login_required(f):
     @wraps(f)
@@ -26,12 +26,10 @@ def login_required(f):
     return decorated_function
 
 load_dotenv()
-OPEN_API_KEY='sk-proj-Ziaae57xKQMLxbltcDA8T3BlbkFJyUeyeiuOldCShltqGdcE'
+OPEN_API_KEY = os.getenv('OPEN_API_KEY', 'sk-proj-Ziaae57xKQMLxbltcDA8T3BlbkFJyUeyeiuOldCShltqGdcE')
 
 # Pass the API key to the OpenAI client
-client = OpenAI(
-    api_key=OPEN_API_KEY,
-    )
+client = OpenAI(api_key=OPEN_API_KEY)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -63,15 +61,18 @@ def generate():
     file_info = None
 
     if model == 'dalle':
-        response = client.images.generate(
-            model="dall-e-3",
-            prompt=prompt,
-            size="1792x1024",
-            quality="standard",
-            n=1,
-        )
-        image_url = response.data[0].url
-        return jsonify({'type': 'image', 'content': image_url})
+        try:
+            response = client.images.generate(
+                model="dall-e-3",
+                prompt=prompt,
+                size="1792x1024",
+                quality="standard",
+                n=1,
+            )
+            image_url = response.data[0].url
+            return jsonify({'type': 'image', 'content': image_url})
+        except Exception as e:
+            return jsonify({'type': 'text', 'content': f"Error generating image: {str(e)}"}), 500
     elif model == 'gpt4':
         if file and file.filename != '':
             try:
