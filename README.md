@@ -18,6 +18,7 @@
 > thats literally it
 
 ***Hosting on URL***
+
 Open cmd and ssh to serveo.net, pretty cool website 
 > **`ssh -R 80:localhost:<YOUR-PORT> serveo.net`**
 > copy paste the url in the cmd
