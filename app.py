@@ -14,8 +14,8 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'your_secret_key_here')  # Use environment variable for secret key
 
 # Hardcoded credentials
-VALID_USERNAME = os.getenv('VALID_USERNAME', 'admin@gmail.com')
-VALID_PASSWORD = os.getenv('VALID_PASSWORD', 'admin@gmail.com')
+VALID_USERNAME = os.getenv('VALID_USERNAME', 'your_username')
+VALID_PASSWORD = os.getenv('VALID_PASSWORD', 'your_password')
 
 def login_required(f):
     @wraps(f)
